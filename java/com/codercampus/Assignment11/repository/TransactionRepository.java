@@ -1,8 +1,11 @@
 package com.codercampus.Assignment11.repository;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class TransactionRepository {
 	
 	public TransactionRepository () {
 		super();
+		serializeData();
 		populateData();
 	}
 	
@@ -32,20 +36,48 @@ public class TransactionRepository {
 	 * 
 	 * Or, try the following links: 
 	 * https://www.geeksforgeeks.org/serialization-in-java/ 
-	 * or https://www.tutorialspoint.com/java/java_serialization.htm 
+	 * or https://www.tutorialt.spoincom/java/java_serialization.htm 
 	 * or https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html
 	 * 
 	 * The use case is easier to understand if you think about it as taking the contents of your java program
 	 *  and writing it out to a file, and or going from that file back into the a java program.
 	 */
+	
+	
+	Transaction transaction;
+	public void serializeData() {
+		try {
+			
+			FileOutputStream fileOutputStream= new FileOutputStream("src/main/resources/doNotTouch/transactions.doNotTouch");
+		ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
+		objectOutputStream.writeObject(transaction);
+		
+		objectOutputStream.close();
+		fileOutputStream.close();
+		System.out.println("transaction is serialized");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@SuppressWarnings("unchecked")
 	public void populateData() {
-		try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/doNotTouch/transactions.doNotTouch");
-			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
+		
+			try{
+					
+					FileInputStream fileInputStream = new FileInputStream("src/main/resources/doNotTouch/transactions.doNotTouch");
+			
+			 
+				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream); 
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
-		} catch (IOException | ClassNotFoundException e) {
+			
+				objectInputStream.close();
+				}catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		} 
-		
+				}
 	}
-}
+

@@ -7,11 +7,11 @@
 		<h2>Transaction History</h2>
 		
 		<table>
-			<tr>
-				<th>ID</th>
-				<th>Date</th>
-				<th>Retailer</th>
-				<th>Funds In</th>
+			<tr th:each= "transactions: ${transaction}">
+				<th>ID# [[${transaction.id}]]</th >
+				<th>Date [[${transaction.date}]]</th>
+				<th>Retailer [[${transaction.retailer}]]</th>
+				<th>Funds In </th>
 				<th>Funds Out</th>
 			</tr>
 			<!-- These 4 rows below are for demonstration purposes only
