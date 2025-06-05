@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,6 @@ public class TransactionRepository {
 	
 	public TransactionRepository () {
 		super();
-		serializeData();
 		populateData();
 	}
 	
@@ -44,27 +45,10 @@ public class TransactionRepository {
 	 */
 	
 	
-	Transaction transaction;
-	public void serializeData() {
-		try {
-			
-			FileOutputStream fileOutputStream= new FileOutputStream("src/main/resources/doNotTouch/transactions.doNotTouch");
-		ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
-		objectOutputStream.writeObject(transaction);
-		
-		objectOutputStream.close();
-		fileOutputStream.close();
-		System.out.println("transaction is serialized");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
+	
 	@SuppressWarnings("unchecked")
-	public void populateData() {
+	public List<Transaction> populateData() {
 		
 			try{
 					
@@ -73,11 +57,21 @@ public class TransactionRepository {
 			 
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream); 
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
-			
-				objectInputStream.close();
+								
+					// I need to extricate the deserialized object into the same object or a differently named one. 
+					/// I need to find a way to add  all of the objects into a list I think since they are deserialized.
 				}catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} 
 				}
+			
+			return this.transactions;
+			
+		}
+
+	public Transaction findById() {
+		return null;
+	} 
+			
+			
 	}
 

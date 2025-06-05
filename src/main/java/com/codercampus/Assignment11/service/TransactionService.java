@@ -19,5 +19,11 @@ public class TransactionService {
 		 
 		
 	}
+	
+	public Transaction findTransactionById(Integer id) {
+		return repo.findById();
+		
+		
+	}
 
 }
