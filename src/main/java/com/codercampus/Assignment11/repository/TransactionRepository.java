@@ -25,6 +25,7 @@ public class TransactionRepository {
 	}
 	
 	public List<Transaction> findAll () {
+		System.out.println(transactions);
 		return transactions;
 	}
 
@@ -48,7 +49,7 @@ public class TransactionRepository {
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<Transaction> populateData() {
+	public void populateData() {
 		
 			try{
 					
@@ -57,14 +58,13 @@ public class TransactionRepository {
 			 
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream); 
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
-								
+								objectInputStream.close();
 					// I need to extricate the deserialized object into the same object or a differently named one. 
 					/// I need to find a way to add  all of the objects into a list I think since they are deserialized.
 				}catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 				}
 			
-			return this.transactions;
 			
 		}
 

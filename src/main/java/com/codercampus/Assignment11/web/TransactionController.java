@@ -22,10 +22,10 @@ public class TransactionController {
 	
 
 	
-	@GetMapping("/transactions")
-	public String getRealTransactions(ModelMap model) {
+	@GetMapping("/showTransactions")
+	public String getTransactions(ModelMap model) {
 	List<Transaction> transactions=	service.importTransactions();
-		model.put("transaction", transactions);
+		model.put("transactions", transactions);
 		return "transactionsView";
 		
 	}
