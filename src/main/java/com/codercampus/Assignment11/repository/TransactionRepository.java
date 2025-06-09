@@ -10,7 +10,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+import javax.swing.text.html.parser.Entity;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.codercampus.Assignment11.domain.Transaction;
@@ -18,15 +23,25 @@ import com.codercampus.Assignment11.domain.Transaction;
 @Repository
 public class TransactionRepository {
 	private List<Transaction> transactions = new ArrayList<>(100);
-	
+	Transaction transaction;
 	public TransactionRepository () {
 		super();
-		populateData();
+		populateData();	
+		
+		
 	}
 	
 	public List<Transaction> findAll () {
 		System.out.println(transactions);
 		return transactions;
+	}
+	public List<Transaction> findById(Long transactionId) {
+		
+		
+		List<Transaction> foundTransaction= transactions.stream().filter(Id->transaction.getId().equals(transactionId)).collect(Collectors.toList());
+
+
+		return foundTransaction;
 	}
 
 	/*
@@ -68,10 +83,12 @@ public class TransactionRepository {
 			
 		}
 
-	public Transaction findById() {
-		return null;
+	
+// rubber duck I am trying to isolate the Id from a list of transactions so I can get the transactions associated with the
+//id. Then I can return those to another webpage. 
+
 	} 
 			
 			
-	}
+	
 

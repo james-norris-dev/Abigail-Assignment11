@@ -45,16 +45,33 @@
 <!-- 			<td>38.50</td> -->
 <!-- 			<td></td> -->
 		</tr>
-		<tr th:each="transaction: ${transactions}">
-			<td th:inline="text">[[${transaction.id}]]</td>
+		<tr th:each="transaction: ${transactions}"> 
+			<td th:inline="text"> <a th:href="@{/showTransactions/{transactionid}(transactionId=${transaction.id})}"> [[${transaction.id}]]</a></td>
 			<td th:inline="text">[[${transaction.date}]]</td>
+<!-- 		have to sort the transactions by ascending date -->
 			<td th:inline="text">[[${transaction.retailer}]]</td>
 			<td th:if="${transaction.type=='C'}">[[${transaction.amount}]]</td>
 			<td> </td>
 			<td th:if="${transaction.type=='D'}">[[${transaction.amount}]]</td>
 			
-			
+			</tr>
 			
 	</table>
+	
+	
+	
+	<div>
+	 <form th:action="@{/showTransactions/{transactionId}(transactionId=${transaction.id})}" method ="post">
+	
+	<h1>Transaction ID:</h1>
+	
+	<h3>Date:</h3>
+	<h3>Amount:</h3>
+	<h3> Description:</h3>
+	
+	</form>
+	
+	
+	</div>
 </body>
 </html>
