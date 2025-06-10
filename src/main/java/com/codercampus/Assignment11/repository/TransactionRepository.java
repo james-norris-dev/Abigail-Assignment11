@@ -35,10 +35,10 @@ public class TransactionRepository {
 		System.out.println(transactions);
 		return transactions;
 	}
-	public Transaction findById(Long transactionId) {
+	public Optional<Transaction> findById(Long transactionId) {
 		
 		
-		Transaction foundTransaction= transactions.stream().filter(t->t.getId().equals(transactionId)).findFirst().orElse(null);
+		Optional<Transaction> foundTransaction= transactions.stream().filter(t->t.getId().equals(transactionId)).findFirst();
 System.out.println(foundTransaction);
 		return foundTransaction;
 	}

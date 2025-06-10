@@ -1,6 +1,7 @@
 package com.codercampus.Assignment11.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +37,8 @@ public class TransactionController {
 	
 	@GetMapping("/showTransactions/{transactionId}")
 	
-	public String retrieveTransactions(ModelMap model,Long id) {
-		Transaction specificTransaction= service.findTransactionById(id);
+	public String retrieveSpecificTransaction(ModelMap model,Long id) {
+		Optional<Transaction> specificTransaction= service.findTransactionById(id);
 		
 		model.put("specificTransaction", specificTransaction);
 	

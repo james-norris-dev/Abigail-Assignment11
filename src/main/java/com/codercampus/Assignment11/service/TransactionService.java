@@ -21,7 +21,9 @@ public class TransactionService {
 		
 	}
 	
-	public Transaction findTransactionById(Long id) {
+	public Optional<Transaction> findTransactionById(Long id) {
+		
+		
 		return repo.findById(id);
 		
 		
