@@ -35,12 +35,11 @@ public class TransactionRepository {
 		System.out.println(transactions);
 		return transactions;
 	}
-	public List<Transaction> findById(Long transactionId) {
+	public Transaction findById(Long transactionId) {
 		
 		
-		List<Transaction> foundTransaction= transactions.stream().filter(Id->transaction.getId().equals(transactionId)).collect(Collectors.toList());
-
-
+		Transaction foundTransaction= transactions.stream().filter(t->t.getId().equals(transactionId)).findFirst().orElse(null);
+System.out.println(foundTransaction);
 		return foundTransaction;
 	}
 
@@ -73,7 +72,6 @@ public class TransactionRepository {
 			 
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream); 
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
-								objectInputStream.close();
 					// I need to extricate the deserialized object into the same object or a differently named one. 
 					/// I need to find a way to add  all of the objects into a list I think since they are deserialized.
 				}catch (IOException | ClassNotFoundException e) {

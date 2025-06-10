@@ -37,11 +37,11 @@ public class TransactionController {
 	@GetMapping("/showTransactions/{transactionId}")
 	
 	public String retrieveTransactions(ModelMap model,Long id) {
-		List<Transaction> specificTransaction= service.findTransactionById(id);
+		Transaction specificTransaction= service.findTransactionById(id);
 		
-		model.put("specific", specificTransaction);
+		model.put("specificTransaction", specificTransaction);
 	
-		return "transactionsView/{transactionId}";
+		return "transactions{transactionId}";
 		
 		
 		

@@ -21,7 +21,7 @@ public class TransactionService {
 		
 	}
 	
-	public List<Transaction> findTransactionById(Long id) {
+	public Transaction findTransactionById(Long id) {
 		return repo.findById(id);
 		
 		
