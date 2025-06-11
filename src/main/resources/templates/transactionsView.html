@@ -46,7 +46,7 @@
 <!-- 			<td></td> -->
 		</tr>
 		<tr th:each="transaction: ${transactions}"> 
-			<td th:inline="text"> <a th:href="@{/showTransactions/{transactionid}(transactionId=${transaction.id})}"> [[${transaction.id}]]</a></td>
+			<td th:inline="text"> <a th:href="@{/showTransactions/{transactionId}(transactionId=${transaction.id})}"> [[${transaction.id}]]</a></td>
 			<td th:inline="text">[[${transaction.date}]]</td>
 <!-- 		have to sort the transactions by ascending date -->
 			<td th:inline="text">[[${transaction.retailer}]]</td>

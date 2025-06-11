@@ -1,0 +1,40 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<head>
+<title>Specific Transaction</title>
+<link rel="stylesheet" href="/css/transactions.css" />
+</head>
+<body>
+
+
+<div >
+
+	<form > 
+		<h1 >Transaction ID: <span th:text="${specificTransaction.id}"> 
+	
+		</span> <span th:if="${specificTransaction.type=='D'}">(Debit)
+		</span>
+		<span th:if="${specificTransaction.type=='C'}"> (Credit)
+		</span>
+		
+		</h1>
+		<p style="margin-bottom: 0em">Date: <span th:text="${specificTransaction.date}">
+		</span>
+		<p style="margin-bottom: 0em">Amount: <span th:text="${specificTransaction.amount}">
+		</span>
+		<p style="margin-bottom: 0em">Description: <span th:text="${specificTransaction.description}">
+		</span>
+		
+		</p>
+		
+		<!-- I need to double up style tags or something to get the words closer together then I need to make the back button -->
+		<!-- different and then import the values into their correct spots. All of this is overwhelming-->
+
+<!-- 		<button>back</button> -->
+	</form>
+</div>
+
+</body>
+
+
+</html>

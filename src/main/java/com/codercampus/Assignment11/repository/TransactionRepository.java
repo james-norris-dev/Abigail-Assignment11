@@ -24,69 +24,67 @@ import com.codercampus.Assignment11.domain.Transaction;
 public class TransactionRepository {
 	private List<Transaction> transactions = new ArrayList<>(100);
 	Transaction transaction;
-	public TransactionRepository () {
+
+	public TransactionRepository() {
 		super();
-		populateData();	
-		
-		
+		populateData();
+
 	}
-	
-	public List<Transaction> findAll () {
+
+	public List<Transaction> findAll() {
 		System.out.println(transactions);
 		return transactions;
 	}
+
 	public Optional<Transaction> findById(Long transactionId) {
-		
-		
-		Optional<Transaction> foundTransaction= transactions.stream().filter(t->t.getId().equals(transactionId)).findFirst();
-System.out.println(foundTransaction);
+
+		Optional<Transaction> foundTransaction = transactions.stream().filter(t -> t.getId().equals(transactionId))
+				.findFirst();
+		System.out.println(foundTransaction);
 		return foundTransaction;
 	}
 
 	/*
-	 * To populate the transactions list with previously "serialized" data from the transactions.txt file
+	 * To populate the transactions list with previously "serialized" data from the
+	 * transactions.txt file
 	 * 
-	 * Want to learn more about serialization, deserialization, and ObjectInputStream and how and why you would want to use it?
+	 * Want to learn more about serialization, deserialization, and
+	 * ObjectInputStream and how and why you would want to use it?
 	 * 
-	 * You can google or chatGPT "ObjectInputStream" and read up on it from the search results
+	 * You can google or chatGPT "ObjectInputStream" and read up on it from the
+	 * search results
 	 * 
-	 * Or, try the following links: 
-	 * https://www.geeksforgeeks.org/serialization-in-java/ 
-	 * or https://www.tutorialt.spoincom/java/java_serialization.htm 
-	 * or https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html
+	 * Or, try the following links:
+	 * https://www.geeksforgeeks.org/serialization-in-java/ or
+	 * https://www.tutorialt.spoincom/java/java_serialization.htm or
+	 * https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html
 	 * 
-	 * The use case is easier to understand if you think about it as taking the contents of your java program
-	 *  and writing it out to a file, and or going from that file back into the a java program.
+	 * The use case is easier to understand if you think about it as taking the
+	 * contents of your java program and writing it out to a file, and or going from
+	 * that file back into the a java program.
 	 */
-	
-	
-	
-	
+
 	@SuppressWarnings("unchecked")
 	public void populateData() {
-		
-			try{
-					
-					FileInputStream fileInputStream = new FileInputStream("src/main/resources/doNotTouch/transactions.doNotTouch");
-			
-			 
-				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream); 
+
+		try {
+
+			FileInputStream fileInputStream = new FileInputStream(
+					"src/main/resources/doNotTouch/transactions.doNotTouch");
+
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
-					// I need to extricate the deserialized object into the same object or a differently named one. 
-					/// I need to find a way to add  all of the objects into a list I think since they are deserialized.
-				}catch (IOException | ClassNotFoundException e) {
+			// I need to extricate the deserialized object into the same object or a
+			// differently named one.
+			/// I need to find a way to add all of the objects into a list I think since
+			// they are deserialized.
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-				}
-			
-			
 		}
 
-	
+	}
+
 // rubber duck I am trying to isolate the Id from a list of transactions so I can get the transactions associated with the
 //id. Then I can return those to another webpage. 
 
-	} 
-			
-			
-	
-
+}

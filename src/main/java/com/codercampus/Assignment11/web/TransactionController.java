@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.codercampus.Assignment11.domain.Transaction;
@@ -37,12 +38,18 @@ public class TransactionController {
 	
 	@GetMapping("/showTransactions/{transactionId}")
 	
-	public String retrieveSpecificTransaction(ModelMap model,Long id) {
-		Optional<Transaction> specificTransaction= service.findTransactionById(id);
+	public String retrieveSpecificTransaction(ModelMap model, @PathVariable Long transactionId) {
+
+		Optional<Transaction> specificTransaction= service.findTransactionById(transactionId);
 		
-		model.put("specificTransaction", specificTransaction);
+		
+		if(specificTransaction.isPresent()) {
+		model.put("specificTransaction", specificTransaction.get());}
+		else {
+			return "Error message";
+		}
 	
-		return "transactions{transactionId}";
+		return "transactions-view";
 		
 		
 		
