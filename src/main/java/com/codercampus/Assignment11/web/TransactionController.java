@@ -1,23 +1,25 @@
 package com.codercampus.Assignment11.web;
 
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.codercampus.Assignment11.domain.Transaction;
+import com.codercampus.Assignment11.domain.TransactionUtility;
 import com.codercampus.Assignment11.service.TransactionService;
 
 @Controller
 public class TransactionController {
 	@Autowired 
 	TransactionService service;
+	
 //	@GetMapping("/transactionsDemo")
 //		public String getTransactionsDemo() {
 //			return "transactions";
@@ -29,6 +31,8 @@ public class TransactionController {
 	public String getTransactions(ModelMap model) {
 	List<Transaction> transactions=	service.importTransactions();
 		model.put("transactions", transactions);
+		model.addAttribute("lists", Collections.class);
+		model.addAttribute("utility",TransactionUtility.class);
 		return "transactionsView";
 		
 	}

@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,10 +32,18 @@ public class TransactionRepository {
 
 	}
 
+
+
 	public List<Transaction> findAll() {
-		System.out.println(transactions);
 		return transactions;
 	}
+	
+	
+
+	
+	
+	
+	
 
 	public Optional<Transaction> findById(Long transactionId) {
 
@@ -74,17 +83,12 @@ public class TransactionRepository {
 
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
-			// I need to extricate the deserialized object into the same object or a
-			// differently named one.
-			/// I need to find a way to add all of the objects into a list I think since
-			// they are deserialized.
+			
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-// rubber duck I am trying to isolate the Id from a list of transactions so I can get the transactions associated with the
-//id. Then I can return those to another webpage. 
 
 }

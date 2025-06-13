@@ -45,17 +45,17 @@
 <!-- 			<td>38.50</td> -->
 <!-- 			<td></td> -->
 		</tr>
-		<tr th:each="transaction: ${transactions}"> 
+		<tbody th:with= "sortedTransactions=${#lists.sort(transactions,utility.byDate)}">
+		<tr th:each="transaction:${sortedTransactions}" th:inline="text" > 
 			<td th:inline="text"> <a th:href="@{/showTransactions/{transactionId}(transactionId=${transaction.id})}"> [[${transaction.id}]]</a></td>
 			<td th:inline="text">[[${transaction.date}]]</td>
-<!-- 		have to sort the transactions by ascending date -->
 			<td th:inline="text">[[${transaction.retailer}]]</td>
 			<td th:if="${transaction.type=='C'}">[[${transaction.amount}]]</td>
 			<td> </td>
 			<td th:if="${transaction.type=='D'}">[[${transaction.amount}]]</td>
 			
 			</tr>
-			
+			</tbody>
 	</table>
 	
 	
